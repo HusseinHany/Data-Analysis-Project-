@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Data 360</title>
+  <!-- Chart.js for all visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* BEGIN PERPLEXITY DESIGN SYSTEM */
+    :root {
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+[data-color-scheme="dark"] {
+  --color-gray-400-rgb: 119, 124, 124;
+  --color-teal-300-rgb: 50, 184, 198;
+  --color-gray-300-rgb: 167, 169, 169;
+  --color-gray-200-rgb: 245, 245, 245;
+  --color-bg-1: rgba(29, 78, 216, 0.15);
+  --color-bg-2: rgba(180, 83, 9, 0.15);
+  --color-bg-3: rgba(21, 128, 61, 0.15);
+  --color-bg-4: rgba(185, 28, 28, 0.15);
+  --color-bg-5: rgba(107, 33, 168, 0.15);
+  --color-bg-6: rgba(194, 65, 12, 0.15);
+  --color-bg-7: rgba(190, 24, 93, 0.15);
+  --color-bg-8: rgba(8, 145, 178, 0.15);
+  --color-background: var(--color-charcoal-700);
+  --color-surface: var(--color-charcoal-800);
+  --color-text: var(--color-gray-200);
+  --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+  --color-primary: var(--color-teal-300);
+  --color-primary-hover: var(--color-teal-400);
+  --color-primary-active: var(--color-teal-800);
+  --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+  --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-error: var(--color-red-400);
+  --color-success: var(--color-teal-300);
+  --color-warning: var(--color-orange-400);
+  --color-info: var(--color-gray-300);
+  --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+  --color-btn-primary-text: var(--color-slate-900);
+  --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+  --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+  --color-success-rgb: var(--color-teal-300-rgb);
+  --color-error-rgb: var(--color-red-400-rgb);
+  --color-warning-rgb: var(--color-orange-400-rgb);
+  --color-info-rgb: var(--color-gray-300-rgb);
+}
+[data-color-scheme="light"] {
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-success-rgb: var(--color-teal-500-rgb);
+  --color-error-rgb: var(--color-red-500-rgb);
+  --color-warning-rgb: var(--color-orange-500-rgb);
+  --color-info-rgb: var(--color-slate-500-rgb);
+}
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+* { box-sizing: border-box; }
+    /* END PERPLEXITY DESIGN SYSTEM */
+    html, body {
+      min-height: 100%;
+      background: var(--color-background);
+    }
+    body {
+      width: 100%;
+      font-family: var(--font-family-base);
+      color: var(--color-text);
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: var(--color-background);
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-8) var(--space-16);
+      gap: var(--space-16);
+    }
+    .logo {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--letter-spacing-tight);
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      background: var(--color-secondary);
+      border-radius: var(--radius-full);
+      padding: var(--space-4);
+      border: none;
+      font-size: var(--font-size-lg);
+      transition: background var(--duration-fast) var(--ease-standard);
+    }
+    .theme-toggle:focus-visible {
+      outline: var(--focus-outline);
+    }
+    .clock {
+      font-size: var(--font-size-base);
+      color: var(--color-info);
+      font-weight: var(--font-weight-semibold);
+      margin-left: var(--space-16);
+    }
+    .search-filter {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-bar {
+      min-width: 210px;
+      flex: 2;
+    }
+    .filter-select {
+      min-width: 130px;
+      max-width: 180px;
+    }
+    .export-btn {
+      margin-left: var(--space-8);
+      font-size: var(--font-size-sm);
+    }
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: var(--color-surface);
+      box-shadow: none;
+      border-bottom: 1px solid var(--color-border);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-normal);
+    }
+    .nav-tabs {
+      display: flex;
+      gap: var(--space-24);
+      overflow-x: auto;
+      padding: var(--space-8) var(--space-4);
+      background: none;
+      margin: 0 auto;
+      border: none;
+      list-style: none;
+    }
+    .nav-tab {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-8) var(--space-12);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--duration-normal) var(--ease-standard);
+      color: var(--color-text-secondary);
+    }
+    .nav-tab.active {
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      font-weight: var(--font-weight-bold);
+      box-shadow: var(--shadow-xs);
+    }
+    @media (max-width: 700px) {
+      .nav-tabs {
+        gap: var(--space-12);
+        font-size: var(--font-size-base);
+      }
+      .header {
+        padding: var(--space-4) var(--space-8);
+      }
+    }
+    .main {
+      width: 100%;
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: var(--space-16);
+    }
+    .breadcrumb {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-16);
+    }
+    .update-timestamp {
+      font-size: var(--font-size-xs);
+      color: var(--color-info);
+      margin-left: var(--space-8);
+    }
+    /* KPI Cards */
+    .kpi-row {
+      display: flex;
+      gap: var(--space-16);
+      flex-wrap: wrap;
+    }
+    .kpi-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xs);
+      min-width: 155px;
+      flex: 1 1 155px;
+      padding: var(--space-12) var(--space-16);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      transition: box-shadow var(--duration-normal) var(--ease-standard), transform var(--duration-normal) var(--ease-standard);
+      cursor: pointer;
+    }
+    .kpi-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px) scale(1.025);
+    }
+    .kpi-title {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+    .kpi-value {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+    }
+    .kpi-trend {
+      display: flex;
+      align-items: center;
+      font-size: var(--font-size-base);
+      gap: var(--space-4);
+    }
+    .kpi-trend.up {
+      color: var(--color-success); font-weight: var(--font-weight-medium);}
+    .kpi-trend.down {
+      color: var(--color-error); font-weight: var(--font-weight-medium);}
+    .kpi-trend.neutral {
+      color: var(--color-info); font-weight: var(--font-weight-medium);}
+    .kpi-status-optimal {
+      display: inline-block;
+      border-radius: var(--radius-full);
+      background: var(--color-success);
+      color: var(--color-btn-primary-text);
+      font-size: var(--font-size-xs);
+      padding: 2px 8px;
+      font-weight: var(--font-weight-bold);
+    }
+    /* Alert styles */
+    .alerts {
+      display: flex;
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+      margin-bottom: var(--space-16);
+      flex-wrap: wrap;
+    }
+    .alert-box {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      background: var(--color-warning);
+      color: var(--color-btn-primary-text);
+      border-radius: var(--radius-md);
+      font-weight: var(--font-weight-bold);
+      padding: var(--space-8) var(--space-12);
+      box-shadow: var(--shadow-xs);
+      min-width: 200px;
+      font-size: var(--font-size-base);
+    }
+    .alert-box.error { background: var(--color-error); }
+    .alert-box.success { background: var(--color-success); }
+    .alert-box.info { background: var(--color-info); }
+    /* Chart container styles */
+    .charts-row {
+      display: flex;
+      gap: var(--space-16);
+      flex-wrap: wrap;
+      margin-top: var(--space-16);
+    }
+    .chart-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xs);
+      padding: var(--space-12) var(--space-16);
+      flex: 1 1 320px;
+      max-width: 480px;
+      min-width: 310px;
+      margin-bottom: var(--space-16);
+      position: relative;
+      transition: box-shadow var(--duration-normal) var(--ease-standard);
+    }
+    .chart-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .chart-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-8);
+      color: var(--color-text-secondary);
+    }
+    .chart-legend {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      margin: var(--space-4) 0 0 0;
+    }
+    .chart-container {
+      width: 100%;
+      height: 265px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .chart-container canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Loading Spinner */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+      color: var(--color-info);
+      font-size: var(--font-size-lg);
+      animation: fadein var(--duration-fast) var(--ease-standard);
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Table Styles */
+    .table-container {
+      margin-top: var(--space-16);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xs);
+      overflow-x: auto;
+      padding: var(--space-12);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: var(--font-size-sm);
+    }
+    th, td {
+      padding: var(--space-8) var(--space-12);
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    th {
+      background: var(--color-secondary);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    tr.highlight-error td {
+      background: rgba(var(--color-error-rgb), 0.13);
+      color: var(--color-error);
+    }
+    tr.highlight-warning td {
+      background: rgba(var(--color-warning-rgb), 0.11);
+      color: var(--color-warning);
+    }
+    tr.highlight-success td {
+      background: rgba(var(--color-success-rgb), 0.09);
+      color: var(--color-success);
+    }
+    tr:hover td {
+      filter: brightness(1.03);
+    }
+    .table-pagination {
+      display: flex;
+      gap: var(--space-8);
+      justify-content: flex-end;
+      align-items: center;
+      margin: var(--space-8) 0;
+    }
+    .table-pagination-btn {
+      border: none;
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      border-radius: var(--radius-full);
+      padding: 2px 14px;
+      cursor: pointer;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+    }
+    .table-pagination-btn.active {
+      background: var(--color-primary);
+      color: var(--color-btn-primary-text);
+      font-weight: var(--font-weight-bold);
+    }
+    .table-pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    /* Responsive Layout */
+    @media (max-width: 1100px) {
+      .main, .charts-row {
+        flex-direction: column;
+      }
+      .kpi-row { flex-direction: column; }
+    }
+    @media (max-width: 800px) {
+      .main {
+        max-width: 99vw; padding: var(--space-8);
+      }
+      .chart-card, .table-container {
+        min-width: 97vw;
+        max-width: unset;
+        padding: var(--space-8) var(--space-6);
+      }
+      .breadcrumb { font-size: var(--font-size-xs); }
+      .update-timestamp { margin-left: var(--space-4);}
+      .header-top { flex-direction: column; gap: var(--space-4); }
+      .search-bar, .filter-select { min-width: 120px; }
+    }
+    @media (max-width: 540px) {
+      .charts-row { flex-direction: column; }
+      .kpi-row { flex-direction: column; }
+      .nav-tabs { gap: var(--space-4); font-size: var(--font-size-sm);}
+    }
+    /* Accessibility focus for charts/cards */
+    .chart-card:focus-within,
+    .kpi-card:focus-within {
+      box-shadow: var(--focus-ring);
+    }
+    /* End main style */
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="header-top">
+      <div class="logo" aria-label="Enterprise Data 360 logo">
+        <span>🌐</span>
+        <span>Enterprise Data 360</span>
+      </div>
+      <div class="search-filter">
+        <input class="form-control search-bar" aria-label="Search" id="globalSearch" type="search" placeholder="Search customer, employee, product ID..." autocomplete="off" />
+        <select class="form-control filter-select" id="globalDomainFilter" aria-label="Domain Filter">
+          <option value="">All Domains</option>
+          <option value="banking">Banking &amp; Finance</option>
+          <option value="ecommerce">E-commerce Sales</option>
+          <option value="inventory">Inventory &amp; Supply Chain</option>
+          <option value="hr">HR Analytics</option>
+          <option value="marketing">Marketing Campaigns</option>
+          <option value="customer360">Customer 360</option>
+        </select>
+        <button class="btn btn--outline export-btn" id="exportBtn" aria-label="Export CSV">⇩ Export Data</button>
+      </div>
+      <div class="flex items-center gap-8">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+        <span class="clock" id="clock" aria-label="Current time"></span>
+      </div>
+    </div>
+    <!-- Navigation Tabs -->
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <ul class="nav-tabs" id="mainTabs">
+        <li class="nav-tab active" data-tab="overview" tabindex="0" aria-label="Dashboard Overview"><span>📊</span> Overview</li>
+        <li class="nav-tab" data-tab="banking" tabindex="0" aria-label="Banking &amp; Finance"><span>💰</span> Banking &amp; Finance</li>
+        <li class="nav-tab" data-tab="ecommerce" tabindex="0" aria-label="E-commerce Sales"><span>🛒</span> E-commerce Sales</li>
+        <li class="nav-tab" data-tab="inventory" tabindex="0" aria-label="Inventory &amp; Supply Chain"><span>📦</span> Inventory &amp; Supply Chain</li>
+        <li class="nav-tab" data-tab="hr" tabindex="0" aria-label="HR Analytics"><span>👥</span> HR Analytics</li>
+        <li class="nav-tab" data-tab="marketing" tabindex="0" aria-label="Marketing Campaigns"><span>📢</span> Marketing Campaigns</li>
+        <li class="nav-tab" data-tab="customer360" tabindex="0" aria-label="Customer 360"><span>🎯</span> Customer 360</li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main" id="mainFrame" tabindex="0">
+    <!-- Content loads dynamically here -->
+  </main>
+  <script>
+    // Dark/Light Theme Support (using in-memory state)
+    let currentTheme = 'dark';
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(theme){
+      currentTheme = theme;
+      document.documentElement.setAttribute('data-color-scheme', theme);
+      themeToggle.textContent = theme==='dark'?'🌙':'☀️';
+    }
+    function initTheme(){
+      applyTheme(currentTheme);
+    }
+    themeToggle.addEventListener('click',()=>{
+      let next = currentTheme==='dark'?'light':'dark';
+      applyTheme(next);
+    });
+    initTheme();
+    // Real-Time Clock
+    function updateClock(){
+      const d = new Date();
+      const options = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
+      document.getElementById('clock').textContent = d.toLocaleString('en-US', options);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    // Tab Navigation
+    const tabs = [
+      {name:'overview', label:'Dashboard Overview'},
+      {name:'banking', label:'Banking & Finance'},
+      {name:'ecommerce', label:'E-commerce Sales'},
+      {name:'inventory', label:'Inventory & Supply Chain'},
+      {name:'hr', label:'HR Analytics'},
+      {name:'marketing', label:'Marketing Campaigns'},
+      {name:'customer360', label:'Customer 360'}
+    ];
+    function setActiveTab(tabName){
+      document.querySelectorAll('.nav-tab').forEach(el=>{
+        if (el.dataset.tab===tabName){el.classList.add('active');}else{el.classList.remove('active');}
+      });
+      loadTab(tabName);
+    }
+    document.getElementById('mainTabs').addEventListener('click',(e)=>{
+      let el = e.target.closest('.nav-tab');
+      if (el) setActiveTab(el.dataset.tab);
+    });
+    // Keyboard accessibility for tabs
+    document.getElementById('mainTabs').addEventListener('keydown', function(e){
+      if ((e.key==='Enter'||e.key===' ') && e.target.classList.contains('nav-tab')){
+        setActiveTab(e.target.dataset.tab); e.preventDefault();
+      }
+    });
+    // --- Main Content Loading ---
+    function loadTab(tabName){
+      // Load main content for the tab
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = '<div class="loading">Loading...</div>';
+      setTimeout(()=>{ // simulate fast transition
+        if (tabName==='overview') renderOverview();
+        else if (tabName==='banking') renderBanking();
+        else if (tabName==='ecommerce') renderEcommerce();
+        else if (tabName==='inventory') renderInventory();
+        else if (tabName==='hr') renderHR();
+        else if (tabName==='marketing') renderMarketing();
+        else if (tabName==='customer360') renderCustomer360();
+      }, 350);
+    }
+    // Breadcrumb path
+    function renderBreadcrumb(tabName){
+      const tab = tabs.find(t=>t.name===tabName);
+      return `<nav class="breadcrumb" aria-label="Breadcrumb">Home / ${tab.label}</nav>`;
+    }
+    // Update timestamp (simulate 'last updated')
+    function renderUpdateTimestamp(){
+      return `<span class="update-timestamp" aria-label="Last Updated">Last updated: ${new Date().toLocaleString()}</span>`;
+    }
+    //--- KPI card utility
+    function renderKPI(kpis){
+      // Array of { title, value, trend, class }
+      return `<section class="kpi-row" aria-label="KPIs">${kpis.map(kpi=>`
+        <div class="kpi-card" tabindex="0" aria-label="${kpi.title} ${kpi.value}">
+          <div class="kpi-title">${kpi.title}</div>
+          <div class="kpi-value">${kpi.value}</div>
+          <div class="kpi-trend ${kpi.trend.class}">${kpi.trend.icon} ${kpi.trend.text}</div>
+          ${kpi.status?`<span class="kpi-status-optimal">${kpi.status}</span>`:''}
+        </div>
+      `).join('')}</section>`;
+    }
+    //--- OVERVIEW TAB RENDER ---
+    function renderOverview(){
+      const main = document.getElementById('mainFrame');
+      // Pull metrics from provided JSON
+      const kpis = [
+        {title:'Total Revenue',value:'$15.2M', trend:{icon:'↑',text:'12%',class:'up'}},
+        {title:'Active Customers',value:'24,563', trend:{icon:'↑',text:'8%',class:'up'}},
+        {title:'Total Transactions',value:'41,002',trend:{icon:'↑',text:'5%',class:'up'}},
+        {title:'Employee Count',value:'847',trend:{icon:'→',text:'No change',class:'neutral'}},
+        {title:'Avg Customer Satisfaction',value:'4.2/5',trend:{icon:'↑',text:'0.3',class:'up'}},
+        {title:'System Health Status',value:'Optimal',trend:{icon:'✔',text:'',class:'success'},status:'Optimal'}
+      ];
+      // Alerts
+      const alerts = [
+        {text:'3 High-Risk Customers Identified',class:'error'},
+        {text:'Low Stock Alert: 12 Products', class:'warning'},
+        {text:'2 Marketing Campaigns Underperforming',class:'info'}
+      ];
+      main.innerHTML = `
+        ${renderBreadcrumb('overview')}
+        <h1>Executive Summary</h1>
+        ${renderUpdateTimestamp()}
+        ${renderKPI(kpis)}
+        <section class="alerts" aria-label="Alerts & Warnings">
+          ${alerts.map(alert=>`<div class="alert-box ${alert.class}">${alert.text}</div>`).join('')}
+        </section>
+        <div class="charts-row">
+          <div class="chart-card" tabindex="0">
+            <div class="chart-title">Revenue Trend (12 Months)</div>
+            <div class="chart-container"><canvas id="revenueTrendChart"></canvas></div>
+            <div class="chart-legend">Monthly revenue trend</div>
+          </div>
+          <div class="chart-card" tabindex="0">
+            <div class="chart-title">Customer Segments</div>
+            <div class="chart-container"><canvas id="customerSegmentChart"></canvas></div>
+            <div class="chart-legend">Segment distribution: Basic / Standard / Enterprise</div>
+          </div>
+          <div class="chart-card" tabindex="0">
+            <div class="chart-title">Top Products by Revenue</div>
+            <div class="chart-container"><canvas id="topProductsChart"></canvas></div>
+            <div class="chart-legend">Horizontal bar: Top 5 products</div>
+          </div>
+        </div>
+        <div class="charts-row">
+          <div class="chart-card" tabindex="0">
+            <div class="chart-title">Department Performance Scorecard</div>
+            <div class="chart-container"><canvas id="deptPerformanceChart"></canvas></div>
+            <div class="chart-legend">Performance grid by department</div>
+          </div>
+          <div class="chart-card" tabindex="0">
+            <div class="chart-title">Geographic Sales Distribution</div>
+            <div class="chart-container"><canvas id="geoSalesChart"></canvas></div>
+            <div class="chart-legend">Approximate sales map</div>
+          </div>
+        </div>
+      `;
+      // Render charts (with tooltips and animation)
+      setTimeout(()=>{renderOverviewCharts();},200);
+    }
+    // OVERVIEW CHARTS
+    function renderOverviewCharts(){
+      // Revenue Trend: Line
+      const ctx1 = document.getElementById('revenueTrendChart').getContext('2d');
+      new Chart(ctx1,{
+        type:'line',
+        data:{
+          labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+          datasets:[{
+            label:'Revenue',
+            data:[1.1,1.37,1.25,1.35,1.53,1.32,1.47,1.59,1.70,1.82,1.98,2.12],
+            fill:true,
+            backgroundColor:'rgba(33,128,141,0.11)',
+            borderColor:'#1FB8CD',
+            pointBackgroundColor:'#FFC185',
+            pointRadius:4,
+            tension:0.27
+          }]
+        },
+        options:{responsive:true,animation:{duration:900},plugins:{legend:{display:true}},scales:{y:{beginAtZero:true,title:{text:'Million USD',display:true},grid:{color:'rgba(0,0,0,0.03)'}},x:{title:{text:'Month',display:true}}}}
+      });
+      // Customer distribution pie
+      const ctx2 = document.getElementById('customerSegmentChart').getContext('2d');
+      new Chart(ctx2,{
+        type:'pie',
+        data:{
+          labels:['Basic','Standard','Enterprise'],
+          datasets:[{
+            data:[60,30,10],
+            backgroundColor:['#1FB8CD','#FFC185','#B4413C'],
+            borderColor:'#fff',
+            hoverOffset:12
+          }]
+        },
+        options:{responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{color:'#21808D'}}},animation:{duration:900}}
+      });
+      // Top 5 products horizontal bar
+      const ctx3 = document.getElementById('topProductsChart').getContext('2d');
+      new Chart(ctx3,{
+        type:'bar',
+        data:{
+          labels:['Prod A','Prod B','Prod C','Prod D','Prod E'],
+          datasets:[{
+            label:'Revenue',
+            data:[4.2,3.7,3.1,2.6,2.0],
+            backgroundColor:'#DB4545',
+            borderRadius:7,
+            borderSkipped:false
+          }]
+        },
+        options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{text:'Million USD',display:true}},y:{title:{text:'Product',display:true}}},animation:{duration:900}}
+      });
+      // Department scorecard heat grid
+      const ctx4 = document.getElementById('deptPerformanceChart').getContext('2d');
+      new Chart(ctx4,{
+        type:'bar',
+        data:{
+          labels:['Sales','Finance','Product','HR','Marketing','Ops','IT','Support'],
+          datasets:[{
+            label:'Score',
+            data:[8,7.7,7.3,7.5,8.2,7.9,8.0,7.4],
+            backgroundColor:function(ctx){
+              const v = ctx.parsed.x;
+              return v>8?'#22c55e':v>7.8?'#FFC185':v>7.5?'#B4413C':'#DB4545';
+            },
+            borderRadius:4
+          }]
+        },
+        options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,max:10,title:{text:'Performance Score',display:true}},y:{title:{text:'Department',display:true}}},animation:{duration:900}}
+      });
+      // Geographic sales map (simulate with bar chart)
+      const ctx5 = document.getElementById('geoSalesChart').getContext('2d');
+      new Chart(ctx5,{
+        type:'bar',
+        data:{labels:['US','DE','FR','CN','IN','JP','UK','CA','BR','AU'],datasets:[{label:'Sales',data:[4.7,2.9,2.6,3.1,2.1,2.3,2.5,2.0,1.7,1.8],backgroundColor:'#5D878F',borderRadius:5}]},
+        options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{title:{text:'Country',display:true}},y:{beginAtZero:true,title:{text:'Million USD',display:true}}},animation:{duration:900}}
+      });
+    }
+    // --- BANKING TAB RENDER ---
+    function renderBanking(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading Banking &amp; Finance...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Account Balance',value:'$892.3M', trend:{icon:'↑',text:'4%',class:'up'}},
+          {title:'Fraud Cases Detected',value:'347', trend:{icon:'⚠',text:'0.85% fraud rate',class:'warning'}},
+          {title:'Avg Credit Score',value:'658',trend:{icon:'→',text:'Stable',class:'neutral'}},
+          {title:'High-Risk Customers',value:'1,243',trend:{icon:'↓',text:'5% of base',class:'down'}},
+          {title:'Default Rate',value:'2.3%',trend:{icon:'↑',text:'0.2%',class:'up'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('banking')}
+          <h1>Banking &amp; Finance Analytics</h1>
+          ${renderUpdateTimestamp()}
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Transaction Type Distribution</div><div class="chart-container"><canvas id="txTypeChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Account Type Balance</div><div class="chart-container"><canvas id="acctBalanceChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Channel Usage Analysis</div><div class="chart-container"><canvas id="channelUsageChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Risk Score Distribution</div><div class="chart-container"><canvas id="riskScoreChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Fraud Detection Heatmap</div><div class="chart-container"><canvas id="fraudHeatmapChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Monthly Transaction Volume</div><div class="chart-container"><canvas id="txVolumeChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>High-Risk Transactions</h3>
+            <table><thead><tr><th>Transaction ID</th><th>Amount</th><th>Credit Score</th><th>Risk Score</th><th>Fraud Status</th></tr></thead>
+            <tbody>
+              <tr class="highlight-error"><td>TX10293</td><td>$48,200</td><td>425</td><td>92</td><td>⚠️ Fraud</td></tr>
+              <tr class="highlight-warning"><td>TX10412</td><td>$32,100</td><td>512</td><td>78</td><td>High Risk</td></tr>
+              <tr class="highlight-error"><td>TX10783</td><td>$41,500</td><td>390</td><td>88</td><td>⚠️ Fraud</td></tr>
+              <tr class="highlight-warning"><td>TX11002</td><td>$27,800</td><td>548</td><td>75</td><td>High Risk</td></tr>
+              <tr class="highlight-success"><td>TX11204</td><td>$8,250</td><td>742</td><td>24</td><td>✓ Normal</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderBankingCharts(),200);
+      },350);
+    }
+    function renderBankingCharts(){
+      new Chart(document.getElementById('txTypeChart').getContext('2d'),{type:'pie',data:{labels:['Withdrawals','Deposits','Interest','Transfers'],datasets:[{data:[35,28,12,25],backgroundColor:['#1FB8CD','#FFC185','#B4413C','#5D878F']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('acctBalanceChart').getContext('2d'),{type:'bar',data:{labels:['Savings','Investment','Loan','Credit Card'],datasets:[{label:'Balance (M)',data:[356,134,89,313],backgroundColor:['#1FB8CD','#FFC185','#DB4545','#964325'],borderRadius:6}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('channelUsageChart').getContext('2d'),{type:'bar',data:{labels:['Mobile App','Online','ATM','Phone'],datasets:[{label:'Usage %',data:[45,30,15,10],backgroundColor:'#5D878F',borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true,max:50}},animation:{duration:900}}});
+      new Chart(document.getElementById('riskScoreChart').getContext('2d'),{type:'bar',data:{labels:['0-20','20-40','40-60','60-80','80-100'],datasets:[{label:'Customers',data:[8200,10500,7800,3200,850],backgroundColor:function(ctx){const v=ctx.dataIndex;return v<2?'#22c55e':v<3?'#FFC185':v<4?'#f59e0b':'#ef4444';},borderRadius:4}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('fraudHeatmapChart').getContext('2d'),{type:'scatter',data:{datasets:[{label:'Normal',data:Array.from({length:50},()=>({x:Math.random()*800+300,y:Math.random()*45000+1000})),backgroundColor:'rgba(33,128,141,0.4)',pointRadius:4},{label:'Fraud',data:Array.from({length:12},()=>({x:Math.random()*400+300,y:Math.random()*40000+8000})),backgroundColor:'rgba(239,68,68,0.9)',pointRadius:7}]},options:{responsive:true,scales:{x:{title:{text:'Credit Score',display:true}},y:{title:{text:'Amount ($)',display:true}}},animation:{duration:900}}});
+      new Chart(document.getElementById('txVolumeChart').getContext('2d'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Transactions',data:[3200,3450,3380,3520,3680,3590,3750,3820,3980,4100,4200,4380],fill:true,backgroundColor:'rgba(33,128,141,0.15)',borderColor:'#1FB8CD',tension:0.3}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+    }
+    function renderEcommerce(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading E-commerce Sales...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Revenue',value:'$15.2M', trend:{icon:'↑',text:'12%',class:'up'}},
+          {title:'Total Orders',value:'50,000', trend:{icon:'↑',text:'7%',class:'up'}},
+          {title:'Avg Order Value',value:'$304',trend:{icon:'↑',text:'$18',class:'up'}},
+          {title:'Avg Satisfaction',value:'4.2/5',trend:{icon:'↑',text:'0.3',class:'up'}},
+          {title:'Repeat Customer Rate',value:'68%',trend:{icon:'→',text:'Stable',class:'neutral'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('ecommerce')}
+          <h1>E-commerce Sales Analytics</h1>
+          ${renderUpdateTimestamp()}
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Sales Trend</div><div class="chart-container"><canvas id="salesTrendChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Category Performance</div><div class="chart-container"><canvas id="categoryPerfChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Sales Channel Distribution</div><div class="chart-container"><canvas id="channelDistChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Payment Method Usage</div><div class="chart-container"><canvas id="paymentMethodChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Customer Satisfaction</div><div class="chart-container"><canvas id="satisfactionChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Top 10 Products</div><div class="chart-container"><canvas id="topProductsEcomChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>Recent Orders</h3>
+            <table><thead><tr><th>Order ID</th><th>Customer ID</th><th>Category</th><th>Amount</th><th>Satisfaction</th><th>Date</th></tr></thead>
+            <tbody>
+              <tr><td>ORD50123</td><td>CUST12453</td><td>Electronics</td><td>$1,240</td><td>⭐⭐⭐⭐⭐ 5</td><td>2025-11-27</td></tr>
+              <tr><td>ORD50124</td><td>CUST18392</td><td>Clothing</td><td>$342</td><td>⭐⭐⭐⭐ 4</td><td>2025-11-27</td></tr>
+              <tr><td>ORD50125</td><td>CUST23940</td><td>Home &amp; Garden</td><td>$568</td><td>⭐⭐⭐⭐⭐ 5</td><td>2025-11-27</td></tr>
+              <tr><td>ORD50126</td><td>CUST14021</td><td>Sports</td><td>$892</td><td>⭐⭐⭐ 3</td><td>2025-11-26</td></tr>
+              <tr><td>ORD50127</td><td>CUST29384</td><td>Beauty</td><td>$215</td><td>⭐⭐⭐⭐⭐ 5</td><td>2025-11-26</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderEcommerceCharts(),200);
+      },350);
+    }
+    function renderEcommerceCharts(){
+      new Chart(document.getElementById('salesTrendChart').getContext('2d'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Revenue (M)',data:[1.05,1.15,1.18,1.22,1.31,1.28,1.38,1.45,1.52,1.61,1.70,1.82],fill:true,backgroundColor:'rgba(255,193,133,0.2)',borderColor:'#FFC185',tension:0.3},{label:'Orders (K)',data:[3.8,4.1,4.0,4.3,4.5,4.4,4.7,4.9,5.1,5.4,5.6,6.0],fill:false,borderColor:'#B4413C',tension:0.3}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('categoryPerfChart').getContext('2d'),{type:'bar',data:{labels:['Electronics','Clothing','Home','Sports','Beauty','Books','Toys','Food','Auto','Health'],datasets:[{label:'Revenue (M)',data:[3.2,2.8,2.1,1.7,1.5,1.3,0.9,0.8,0.6,0.5],backgroundColor:'#DB4545',borderRadius:5}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('channelDistChart').getContext('2d'),{type:'pie',data:{labels:['Online','Store','Mobile App'],datasets:[{data:[50,30,20],backgroundColor:['#1FB8CD','#FFC185','#944454']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('paymentMethodChart').getContext('2d'),{type:'bar',data:{labels:['Credit Card','PayPal','Debit Card','Apple Pay','Bank Transfer'],datasets:[{label:'Usage %',data:[60,25,8,5,2],backgroundColor:['#1FB8CD','#FFC185','#B4413C','#5D878F','#DB4545'],borderRadius:6}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('satisfactionChart').getContext('2d'),{type:'bar',data:{labels:['1 Star','2 Stars','3 Stars','4 Stars','5 Stars'],datasets:[{label:'Count',data:[850,1200,4500,18200,25250],backgroundColor:function(ctx){const v=ctx.dataIndex;return v<2?'#ef4444':v<3?'#f59e0b':'#22c55e';},borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('topProductsEcomChart').getContext('2d'),{type:'bar',data:{labels:['iPhone 15','Nike Shoes','Samsung TV','Laptop Pro','Gaming Chair','Headphones','Smartwatch','Tablet','Drone','Coffee Maker'],datasets:[{label:'Revenue (K)',data:[420,385,360,340,295,270,245,220,195,180],backgroundColor:'#964325',borderRadius:5}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+    }
+    function renderInventory(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading Inventory &amp; Supply Chain...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Inventory Value',value:'$2.8M', trend:{icon:'↑',text:'3%',class:'up'}},
+          {title:'Products in Stock',value:'18,432', trend:{icon:'→',text:'92% available',class:'success'}},
+          {title:'Low Stock Products',value:'156',trend:{icon:'⚠',text:'Reorder needed',class:'warning'}},
+          {title:'Avg Profit Margin',value:'38%',trend:{icon:'↑',text:'2%',class:'up'}},
+          {title:'Warehouse Utilization',value:'76%',trend:{icon:'↑',text:'4%',class:'up'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('inventory')}
+          <h1>Inventory &amp; Supply Chain Analytics</h1>
+          ${renderUpdateTimestamp()}
+          <div class="alerts"><div class="alert-box error">⚠️ URGENT: 12 products below reorder point</div><div class="alert-box warning">Low profit margin products: 23 items</div></div>
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Stock Status Distribution</div><div class="chart-container"><canvas id="stockStatusChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Profit Margin by Category</div><div class="chart-container"><canvas id="profitMarginChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Inventory Turnover</div><div class="chart-container"><canvas id="turnoverChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Warehouse Location</div><div class="chart-container"><canvas id="warehouseChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Current vs Reorder Point</div><div class="chart-container"><canvas id="reorderScatterChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Top 15 High-Risk Products</div><div class="chart-container"><canvas id="highRiskChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>Inventory Alert: Low Stock Products</h3>
+            <table><thead><tr><th>Product ID</th><th>Category</th><th>Current Stock</th><th>Reorder Point</th><th>Status</th><th>Profit Margin</th></tr></thead>
+            <tbody>
+              <tr class="highlight-error"><td>PRD10234</td><td>Electronics</td><td>8</td><td>50</td><td>⚠️ Critical</td><td>42%</td></tr>
+              <tr class="highlight-error"><td>PRD10456</td><td>Furniture</td><td>12</td><td>30</td><td>⚠️ Critical</td><td>38%</td></tr>
+              <tr class="highlight-warning"><td>PRD10789</td><td>Clothing</td><td>45</td><td>100</td><td>⚠ Low Stock</td><td>52%</td></tr>
+              <tr class="highlight-warning"><td>PRD11023</td><td>Sports</td><td>28</td><td>60</td><td>⚠ Low Stock</td><td>45%</td></tr>
+              <tr class="highlight-success"><td>PRD11240</td><td>Beauty</td><td>520</td><td>200</td><td>✓ In Stock</td><td>61%</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderInventoryCharts(),200);
+      },350);
+    }
+    function renderInventoryCharts(){
+      new Chart(document.getElementById('stockStatusChart').getContext('2d'),{type:'pie',data:{labels:['In Stock','Low Stock','Discontinued'],datasets:[{data:[92,7,1],backgroundColor:['#22c55e','#f59e0b','#ef4444']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('profitMarginChart').getContext('2d'),{type:'bar',data:{labels:['Electronics','Clothing','Home','Sports','Beauty','Books','Toys','Food','Auto','Health'],datasets:[{label:'Margin %',data:[42,52,38,45,61,35,28,22,40,48],backgroundColor:'#1FB8CD',borderRadius:6}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true,max:70}},animation:{duration:900}}});
+      new Chart(document.getElementById('turnoverChart').getContext('2d'),{type:'bar',data:{labels:['Electronics','Clothing','Home','Sports','Beauty','Books','Toys','Food','Auto','Health'],datasets:[{label:'Turnover Rate',data:[8.5,12.3,6.2,9.8,11.5,7.4,5.3,14.2,4.8,10.1],backgroundColor:['#DB4545','#FFC185','#B4413C','#5D878F','#964325','#944454','#13343B','#D2BA4C','#1FB8CD','#ECEBD5'],borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('warehouseChart').getContext('2d'),{type:'pie',data:{labels:['US-East','US-West','EU-North','EU-South','Asia-Pacific','Latin America'],datasets:[{data:[28,24,18,15,10,5],backgroundColor:['#1FB8CD','#FFC185','#B4413C','#5D878F','#DB4545','#964325']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('reorderScatterChart').getContext('2d'),{type:'scatter',data:{datasets:[{label:'Normal Stock',data:Array.from({length:40},()=>({x:Math.random()*500+50,y:Math.random()*400+30})),backgroundColor:'rgba(34,197,94,0.5)',pointRadius:5},{label:'Low Stock',data:Array.from({length:15},()=>({x:Math.random()*80+10,y:Math.random()*150+50})),backgroundColor:'rgba(239,68,68,0.8)',pointRadius:8}]},options:{responsive:true,scales:{x:{title:{text:'Current Stock',display:true}},y:{title:{text:'Reorder Point',display:true}}},animation:{duration:900}}});
+      new Chart(document.getElementById('highRiskChart').getContext('2d'),{type:'bar',data:{labels:['P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12','P13','P14','P15'],datasets:[{label:'Risk Score',data:[95,92,88,85,82,80,78,75,73,71,68,66,64,62,60],backgroundColor:'#ef4444',borderRadius:5}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true,max:100}},animation:{duration:900}}});
+    }
+    function renderHR(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading HR Analytics...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Employees',value:'847', trend:{icon:'→',text:'Stable',class:'neutral'}},
+          {title:'Avg Performance Rating',value:'3.6/5', trend:{icon:'↑',text:'0.2',class:'up'}},
+          {title:'Avg Salary',value:'$52,400',trend:{icon:'↑',text:'$850',class:'up'}},
+          {title:'Turnover Rate',value:'12%',trend:{icon:'↓',text:'Annual',class:'down'}},
+          {title:'Avg Tenure',value:'4.2 years',trend:{icon:'↑',text:'0.1',class:'up'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('hr')}
+          <h1>HR Analytics</h1>
+          ${renderUpdateTimestamp()}
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Department Employee Distribution</div><div class="chart-container"><canvas id="hrDeptDistChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Performance Rating Distribution</div><div class="chart-container"><canvas id="hrRatingChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Leave Usage Heatmap</div><div class="chart-container"><canvas id="hrLeaveChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Salary by Department</div><div class="chart-container"><canvas id="hrSalaryChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Bonus Eligibility Rate</div><div class="chart-container"><canvas id="hrBonusChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Years Employed</div><div class="chart-container"><canvas id="hrYearsChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>Employee List</h3>
+            <table><thead><tr><th>Employee ID</th><th>Department</th><th>Position</th><th>Performance</th><th>Salary</th><th>Years Employed</th></tr></thead>
+            <tbody>
+              <tr><td>EMP00123</td><td>Sales</td><td>Manager</td><td>4.5</td><td>$87,300</td><td>7</td></tr>
+              <tr><td>EMP00234</td><td>Finance</td><td>Analyst</td><td>3.8</td><td>$54,200</td><td>4</td></tr>
+              <tr><td>EMP00345</td><td>HR</td><td>Specialist</td><td>4.1</td><td>$48,900</td><td>6</td></tr>
+              <tr><td>EMP00456</td><td>Product</td><td>Lead</td><td>3.5</td><td>$68,500</td><td>3</td></tr>
+              <tr><td>EMP00567</td><td>Marketing</td><td>Coordinator</td><td>3.2</td><td>$44,700</td><td>2</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderHRCharts(),200);
+      },350);
+    }
+    function renderHRCharts(){
+      new Chart(document.getElementById('hrDeptDistChart').getContext('2d'),{type:'pie',data:{labels:['Sales','Finance','Product','HR','Marketing','Ops','IT','Support','Legal','R&D'],datasets:[{data:[13,9,10,8,12,11,10,13,7,4],backgroundColor:['#1FB8CD','#FFC185','#B4413C','#5D878F','#964325','#944454','#13343B','#DB4545','#D2BA4C','#ECEBD5']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('hrRatingChart').getContext('2d'),{type:'bar',data:{labels:['1','2','3','4','5'],datasets:[{label:'Count',data:[250,700,2200,4250,2250],backgroundColor:function(ctx){const v=ctx.dataIndex;return v<2?'#ef4444':v<3?'#f59e0b':'#22c55e';},borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('hrLeaveChart').getContext('2d'),{type:'bar',data:{labels:['Sales','Finance','Product','HR','Marketing','Ops','IT','Support'],datasets:[{label:'Sick Days',data:[2.3,2.1,2.7,2.8,2.2,2.5,2.4,2.6],backgroundColor:'#B4413C'},{label:'Vacation',data:[13.1,11.8,12.5,14.2,10.9,13.3,12.8,12.0],backgroundColor:'#5D878F'}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('hrSalaryChart').getContext('2d'),{type:'bar',data:{labels:['Sales','Finance','Product','HR','Marketing','Ops','IT','Support','Legal','R&D'],datasets:[{label:'Avg Salary',data:[67300,56200,68900,48900,44700,52000,61200,48300,73000,87600],backgroundColor:'#22c55e',borderRadius:7}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('hrBonusChart').getContext('2d'),{type:'bar',data:{labels:['Sales','Finance','Product','HR','Marketing','Ops','IT','Support','Legal','R&D'],datasets:[{label:'Bonus Rate %',data:[82,75,87,69,92,80,78,85,74,88],backgroundColor:'#FFC185',borderRadius:4}]},options:{responsive:true,scales:{y:{beginAtZero:true,max:100}},animation:{duration:900}}});
+      new Chart(document.getElementById('hrYearsChart').getContext('2d'),{type:'bar',data:{labels:['0-2','2-4','4-6','6-8','8-10','10+'],datasets:[{label:'Employees',data:[83,132,234,148,109,141],backgroundColor:'#944454',borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+    }
+    function renderMarketing(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading Marketing Campaigns...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Campaign Budget',value:'$1.2M', trend:{icon:'→',text:'Stable',class:'neutral'}},
+          {title:'Total Spent',value:'$987K', trend:{icon:'↑',text:'82% Utilization',class:'up'}},
+          {title:'Total Impressions',value:'45.2M', trend:{icon:'↑',text:'8%',class:'up'}},
+          {title:'Average CTR',value:'3.8%',trend:{icon:'↑',text:'0.2%',class:'up'}},
+          {title:'Average ROAS',value:'4.2x',trend:{icon:'↑',text:'0.4',class:'up'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('marketing')}
+          <h1>Marketing Campaign Analytics</h1>
+          ${renderUpdateTimestamp()}
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">ROAS by Platform</div><div class="chart-container"><canvas id="roasPlatformChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Budget vs Spent</div><div class="chart-container"><canvas id="budgetSpentChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Conversion Funnel</div><div class="chart-container"><canvas id="convFunnelChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Platform Scorecard</div><div class="chart-container"><canvas id="platformScorecardChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">CTR Trend Over Time</div><div class="chart-container"><canvas id="ctrTrendChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Top 10 Campaigns</div><div class="chart-container"><canvas id="campaignTopChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>Campaign Details</h3>
+            <table><thead><tr><th>Campaign ID</th><th>Platform</th><th>Budget</th><th>Spent</th><th>Impressions</th><th>Clicks</th><th>Conversions</th><th>ROAS</th><th>CTR</th></tr></thead>
+            <tbody>
+              <tr class="highlight-success"><td>CAM10005</td><td>Google Ads</td><td>$120K</td><td>$115K</td><td>2.4M</td><td>82,400</td><td>5,320</td><td>7.3x</td><td>3.4%</td></tr>
+              <tr class="highlight-warning"><td>CAM10213</td><td>Facebook</td><td>$98K</td><td>$93K</td><td>1.7M</td><td>62,900</td><td>3,290</td><td>4.5x</td><td>2.6%</td></tr>
+              <tr class="highlight-error"><td>CAM10421</td><td>Twitter</td><td>$68K</td><td>$67K</td><td>810K</td><td>27,300</td><td>570</td><td>1.2x</td><td>0.7%</td></tr>
+              <tr class="highlight-success"><td>CAM10567</td><td>Instagram</td><td>$116K</td><td>$108K</td><td>2.8M</td><td>95,300</td><td>6,210</td><td>8.1x</td><td>4.2%</td></tr>
+              <tr class="highlight-warning"><td>CAM10788</td><td>LinkedIn</td><td>$82K</td><td>$79K</td><td>920K</td><td>33,400</td><td>2,170</td><td>3.8x</td><td>2.3%</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderMarketingCharts(),200);
+      },350);
+    }
+    function renderMarketingCharts(){
+      new Chart(document.getElementById('roasPlatformChart').getContext('2d'),{type:'bar',data:{labels:['Google Ads','Facebook','Twitter','Instagram','LinkedIn'],datasets:[{label:'ROAS',data:[7.3,4.5,1.2,8.1,3.8],backgroundColor:['#22c55e','#FFC185','#ef4444','#B4413C','#5D878F'],borderRadius:6}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('budgetSpentChart').getContext('2d'),{type:'bar',data:{labels:['Google Ads','Facebook','Twitter','Instagram','LinkedIn'],datasets:[{label:'Budget',data:[120,98,68,116,82],backgroundColor:'#FFC185'},{label:'Spent',data:[115,93,67,108,79],backgroundColor:'#DB4545'}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('convFunnelChart').getContext('2d'),{type:'bar',data:{labels:['Impressions','Clicks','Conversions'],datasets:[{label:'Total',data:[9.6,2.5,0.12],backgroundColor:['#3b82f6','#22c55e','#ef4444'],borderRadius:8}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('platformScorecardChart').getContext('2d'),{type:'bar',data:{labels:['Google Ads','Facebook','Twitter','Instagram','LinkedIn'],datasets:[{label:'Performance',data:[89,77,62,94,73],backgroundColor:function(ctx){const v=ctx.parsed.x;return v>80?'#22c55e':v>70?'#FFC185':v>60?'#f59e0b':'#ef4444';},borderRadius:5}]},options:{responsive:true,scales:{x:{beginAtZero:true,max:100}},animation:{duration:900}}});
+      new Chart(document.getElementById('ctrTrendChart').getContext('2d'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],datasets:[{label:'CTR %',data:[2.1,2.5,2.8,3.2,3.6,3.9,4.1,4.5,4.7,4.8,5.1],backgroundColor:'rgba(50,184,198,0.14)',borderColor:'#1FB8CD',fill:true,tension:0.34}]},options:{responsive:true,scales:{y:{beginAtZero:true,max:6}},animation:{duration:900}}});
+      new Chart(document.getElementById('campaignTopChart').getContext('2d'),{type:'bar',data:{labels:['CAM10005','CAM10567','CAM10213','CAM10788','CAM10653','CAM10312','CAM10786','CAM10122','CAM10421','CAM10510'],datasets:[{label:'Conversions',data:[5320,6210,3290,2170,2110,1630,1570,1400,570,510],backgroundColor:'#DB4545',borderRadius:6}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+    }
+    function renderCustomer360(){
+      const main = document.getElementById('mainFrame');
+      main.innerHTML = `<div class="loading">Loading Customer 360...</div>`;
+      setTimeout(()=>{
+        const kpis = [
+          {title:'Total Customers',value:'24,563', trend:{icon:'↑',text:'8%',class:'up'}},
+          {title:'At-Risk Customers',value:'3,847', trend:{icon:'⚠',text:'15.7%',class:'warning'}},
+          {title:'High-Value Customers',value:'4,912',trend:{icon:'↑',text:'Top 20%',class:'up'}},
+          {title:'Avg Lifetime Value',value:'$612',trend:{icon:'↑',text:'$45',class:'up'}},
+          {title:'Avg NPS',value:'48',trend:{icon:'↑',text:'3 pts',class:'up'}}
+        ];
+        main.innerHTML = `
+          ${renderBreadcrumb('customer360')}
+          <h1>Customer 360 Analytics</h1>
+          ${renderUpdateTimestamp()}
+          <div class="alerts"><div class="alert-box error">447 customers at imminent churn risk - engagement recommended</div><div class="alert-box info">Top 5 retention targets identified</div></div>
+          ${renderKPI(kpis)}
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Customer Segmentation</div><div class="chart-container"><canvas id="custSegChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Churn Risk Distribution</div><div class="chart-container"><canvas id="churnDistChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">NPS Distribution</div><div class="chart-container"><canvas id="npsDistChart"></canvas></div></div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card" tabindex="0"><div class="chart-title">Customer Value vs Churn Risk</div><div class="chart-container"><canvas id="valueChurnScatterChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Age vs Spending</div><div class="chart-container"><canvas id="ageSpendingChart"></canvas></div></div>
+            <div class="chart-card" tabindex="0"><div class="chart-title">Country Revenue Distribution</div><div class="chart-container"><canvas id="countryRevenueChart"></canvas></div></div>
+          </div>
+          <div class="table-container">
+            <h3>At-Risk High-Value Customers</h3>
+            <table><thead><tr><th>Customer ID</th><th>Segment</th><th>Total Spent</th><th>Churn Risk</th><th>NPS</th><th>Recent Activity</th></tr></thead>
+            <tbody>
+              <tr class="highlight-error"><td>CUST14582</td><td>Enterprise</td><td>$28,450</td><td>92</td><td>-45</td><td>No purchase 45 days</td></tr>
+              <tr class="highlight-error"><td>CUST18934</td><td>Enterprise</td><td>$32,120</td><td>88</td><td>-32</td><td>No purchase 38 days</td></tr>
+              <tr class="highlight-warning"><td>CUST22341</td><td>Standard</td><td>$18,730</td><td>76</td><td>12</td><td>No purchase 28 days</td></tr>
+              <tr class="highlight-warning"><td>CUST23045</td><td>Standard</td><td>$14,290</td><td>72</td><td>18</td><td>No purchase 22 days</td></tr>
+              <tr class="highlight-success"><td>CUST29418</td><td>Basic</td><td>$5,820</td><td>18</td><td>87</td><td>Active</td></tr>
+            </tbody></table>
+          </div>
+        `;
+        setTimeout(()=>renderCustomer360Charts(),200);
+      },350);
+    }
+    function renderCustomer360Charts(){
+      new Chart(document.getElementById('custSegChart').getContext('2d'),{type:'pie',data:{labels:['Basic','Standard','Enterprise'],datasets:[{data:[60,30,10],backgroundColor:['#1FB8CD','#FFC185','#B4413C']}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+      new Chart(document.getElementById('churnDistChart').getContext('2d'),{type:'bar',data:{labels:['0-20','20-40','40-60','60-80','80-100'],datasets:[{label:'Customers',data:[11200,8900,2800,1200,463],backgroundColor:function(ctx){const v=ctx.dataIndex;return v<3?'#22c55e':v<4?'#f59e0b':'#ef4444';},borderRadius:5}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('npsDistChart').getContext('2d'),{type:'bar',data:{labels:['Detractors','Passives','Promoters'],datasets:[{label:'Count',data:[4200,8600,11763],backgroundColor:['#ef4444','#f59e0b','#22c55e'],borderRadius:6}]},options:{responsive:true,scales:{y:{beginAtZero:true}},animation:{duration:900}}});
+      new Chart(document.getElementById('valueChurnScatterChart').getContext('2d'),{type:'scatter',data:{datasets:[{label:'Low Risk',data:Array.from({length:45},()=>({x:Math.random()*30000+500,y:Math.random()*40+0})),backgroundColor:'rgba(34,197,94,0.5)',pointRadius:5},{label:'At Risk',data:Array.from({length:25},()=>({x:Math.random()*40000+5000,y:Math.random()*50+50})),backgroundColor:'rgba(239,68,68,0.8)',pointRadius:8}]},options:{responsive:true,scales:{x:{title:{text:'Lifetime Value ($)',display:true}},y:{title:{text:'Churn Risk Score',display:true}}},animation:{duration:900}}});
+      new Chart(document.getElementById('ageSpendingChart').getContext('2d'),{type:'scatter',data:{datasets:[{label:'Spending by Age',data:Array.from({length:80},()=>({x:Math.random()*60+18,y:Math.random()*45000+500})),backgroundColor:'rgba(50,184,198,0.6)',pointRadius:6}]},options:{responsive:true,scales:{x:{title:{text:'Age',display:true}},y:{title:{text:'Total Spent ($)',display:true}}},animation:{duration:900}}});
+      new Chart(document.getElementById('countryRevenueChart').getContext('2d'),{type:'bar',data:{labels:['US','DE','FR','CN','IN','JP','UK','CA','BR','AU','IT','ES','NL','SE','CH'],datasets:[{label:'Revenue (M)',data:[4.7,2.9,2.6,3.1,2.1,2.3,2.5,2.0,1.7,1.8,1.5,1.4,1.3,1.2,1.1],backgroundColor:'#DB4545',borderRadius:5}]},options:{indexAxis:'y',responsive:true,scales:{x:{beginAtZero:true}},animation:{duration:900}}});
+    }
+    // Export functionality
+    document.getElementById('exportBtn').addEventListener('click', ()=>{
+      const currentTab = document.querySelector('.nav-tab.active').dataset.tab;
+      let csvContent = 'data:text/csv;charset=utf-8,';
+      let headers = '';
+      let rows = [];
+      if (currentTab === 'overview') {
+        headers = 'Metric,Value,Trend\n';
+        rows.push('Total Revenue,$15.2M,+12%');
+        rows.push('Active Customers,24563,+8%');
+        rows.push('Total Transactions,41002,+5%');
+        rows.push('Employee Count,847,No change');
+        rows.push('Avg Customer Satisfaction,4.2/5,+0.3');
+      } else if (currentTab === 'banking') {
+        headers = 'Transaction_ID,Amount,Credit_Score,Risk_Score,Is_Fraud\n';
+        rows.push('TX10293,$48200,425,92,Fraud');
+        rows.push('TX10412,$32100,512,78,High Risk');
+        rows.push('TX10783,$41500,390,88,Fraud');
+        rows.push('TX11002,$27800,548,75,High Risk');
+        rows.push('TX11204,$8250,742,24,Normal');
+      } else if (currentTab === 'ecommerce') {
+        headers = 'Order_ID,Customer_ID,Category,Amount,Satisfaction,Date\n';
+        rows.push('ORD50123,CUST12453,Electronics,$1240,5,2025-11-27');
+        rows.push('ORD50124,CUST18392,Clothing,$342,4,2025-11-27');
+        rows.push('ORD50125,CUST23940,Home & Garden,$568,5,2025-11-27');
+        rows.push('ORD50126,CUST14021,Sports,$892,3,2025-11-26');
+        rows.push('ORD50127,CUST29384,Beauty,$215,5,2025-11-26');
+      } else if (currentTab === 'inventory') {
+        headers = 'Product_ID,Category,Current_Stock,Reorder_Point,Status,Profit_Margin\n';
+        rows.push('PRD10234,Electronics,8,50,Critical,42%');
+        rows.push('PRD10456,Furniture,12,30,Critical,38%');
+        rows.push('PRD10789,Clothing,45,100,Low Stock,52%');
+        rows.push('PRD11023,Sports,28,60,Low Stock,45%');
+        rows.push('PRD11240,Beauty,520,200,In Stock,61%');
+      } else if (currentTab === 'hr') {
+        headers = 'Employee_ID,Department,Position,Performance_Rating,Salary,Years_Employed\n';
+        rows.push('EMP00123,Sales,Manager,4.5,$87300,7');
+        rows.push('EMP00234,Finance,Analyst,3.8,$54200,4');
+        rows.push('EMP00345,HR,Specialist,4.1,$48900,6');
+        rows.push('EMP00456,Product,Lead,3.5,$68500,3');
+        rows.push('EMP00567,Marketing,Coordinator,3.2,$44700,2');
+      } else if (currentTab === 'marketing') {
+        headers = 'Campaign_ID,Platform,Budget,Spent,Impressions,Clicks,Conversions,ROAS,CTR\n';
+        rows.push('CAM10005,Google Ads,$120K,$115K,2.4M,82400,5320,7.3x,3.4%');
+        rows.push('CAM10213,Facebook,$98K,$93K,1.7M,62900,3290,4.5x,2.6%');
+        rows.push('CAM10421,Twitter,$68K,$67K,810K,27300,570,1.2x,0.7%');
+        rows.push('CAM10567,Instagram,$116K,$108K,2.8M,95300,6210,8.1x,4.2%');
+        rows.push('CAM10788,LinkedIn,$82K,$79K,920K,33400,2170,3.8x,2.3%');
+      } else if (currentTab === 'customer360') {
+        headers = 'Customer_ID,Segment,Total_Spent,Churn_Risk,NPS,Recent_Activity\n';
+        rows.push('CUST14582,Enterprise,$28450,92,-45,No purchase 45 days');
+        rows.push('CUST18934,Enterprise,$32120,88,-32,No purchase 38 days');
+        rows.push('CUST22341,Standard,$18730,76,12,No purchase 28 days');
+        rows.push('CUST23045,Standard,$14290,72,18,No purchase 22 days');
+        rows.push('CUST29418,Basic,$5820,18,87,Active');
+      }
+      csvContent += headers + rows.join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `enterprise_data_360_${currentTab}_${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+    // Initial load
+    setActiveTab('overview');
+  </script>
+</body>
+</html>
